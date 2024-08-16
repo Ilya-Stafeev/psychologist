@@ -1,0 +1,40 @@
+.header {
+    height: 70px;
+    padding-top: 15px;
+
+    .header_logo-block {
+        min-width: 180px;
+
+        .header__logo-link {
+
+            .header_logo-img {
+                max-width: 150px;
+                width: 150px;
+                min-width: 150px;
+                height: auto;
+                display: block;
+            }
+        }
+    }
+
+    .header_nav-block {
+        width: 100%;
+
+        .header__nav {
+            .header__nav-list {
+                margin: 0;
+
+                .header__nav-item {
+
+                    .header__nav-link {
+                        font-size: 18px;
+                        color: #000;
+                        font-weight: 400;
+                        text-transform: capitalize;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
