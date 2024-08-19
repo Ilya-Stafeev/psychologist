@@ -1,40 +1,206 @@
-.header {
-    height: 70px;
+.header {    
     padding-top: 15px;
 
-    .header_logo-block {
-        min-width: 180px;
+    .header__block {
+        height: 70px;      
+    
+        .header_logo-block {
+            min-width: 180px;
 
-        .header__logo-link {
+            .header__logo-link {
 
-            .header_logo-img {
-                max-width: 150px;
-                width: 150px;
-                min-width: 150px;
-                height: auto;
-                display: block;
+                .header_logo-img {
+                    max-width: 150px;
+                    width: 150px;
+                    min-width: 150px;
+                    height: auto;
+                    display: block;
+                }
             }
         }
-    }
 
-    .header_nav-block {
-        width: 100%;
+        .header__nav-block {
+            width: 100%;            
 
-        .header__nav {
-            .header__nav-list {
-                margin: 0;
+            .header__nav {
+                .header__nav-list {
+                    margin: 0;                
+                    padding: 0;
+                    list-style-type: none;
 
-                .header__nav-item {
+                    .header__nav-item {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        
+                        &:first-child {
+                            padding-left: 0;
+                        }
+                        
+                        &:last-child {
+                            padding-right: 0;
+                        }
 
-                    .header__nav-link {
-                        font-size: 18px;
-                        color: #000;
-                        font-weight: 400;
-                        text-transform: capitalize;
-                        text-decoration: none;
+                        .header__nav-link {
+                            font-size: 18px;
+                            color: #000;
+                            font-weight: 400;
+                            text-transform: capitalize;
+                            text-decoration: none;
+                        }
                     }
                 }
             }
+
+
+        }
+
+        .header__connection-menu {
+            min-width: 180px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+
+            .header__connection-block {
+                display: table;
+                text-align: right;
+                width: auto;
+                position: relative;
+                float: right;
+
+                .header__connection-list {
+                    padding: 0;
+                    margin: 0;
+                    list-style-type: none;
+
+                    .header__connection-item {
+                        .header__connection-link {
+                            .header__connection-img {                            
+                            
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .header__btn {
+            position: relative;
+            flex-shrink: 0;
+            width: 28px;
+            height: 20px;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            outline: none;
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            transition: transform .5s ease-in-out;
+            cursor: pointer;
+            z-index: 999;
+            overflow: hidden;
+
+            .header__btn-line {
+                display: block;
+                position: absolute;
+                width: 100%;
+                opacity: 1;
+                left: 0;
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                transition: .5s ease-in-out;
+                height: 3px;
+                background-color: #000;
+                z-index: -100;
+
+                &:nth-child(1) {
+                    top: 0px;
+                }
+
+                &:nth-child(2),
+                &:nth-child(3) {
+                    width: 100%;
+                    left: 20%;
+                    right: 0;
+                    top: 8px;              
+                }
+
+                &:nth-child(4) {
+                    top: 16px;
+                }                
+            }
+
+            &:hover {
+                .header__btn-line:nth-child(2),
+                .header__btn-line:nth-child(3) {
+                    left: -20%;
+                    right: 0;  
+                    width: 100%;                  
+                }
+            }
+
+            &.active {
+                .header__btn-line {
+                    background-color: #000;
+        
+                    &:nth-child(1) {
+                        top: 8px;                       
+                        transform: rotate(45deg);
+                        -webkit-transform: rotate(45deg);
+                    }
+        
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        opacity: 0;
+                    }
+        
+                    &:nth-child(4) {
+                        top: 8px;                       
+                        transform: rotate(-45deg);
+                        -webkit-transform: rotate(-45deg);
+                    }
+                }
+            }
+        }        
+    }
+
+    .header__mobile-block {   
+        display: block;    
+        transition: opacity .5s ease-in-out;
+        opacity: 1;
+
+        .header__mobile-nav {
+            padding: 20px 0;
+
+            .header__mobile-nav-list {
+                .header__mobile-nav-item {
+                    padding: 10px 0;
+
+                    .header__mobile-nav-link {
+                        text-decoration: none;
+                        color: #000000;
+                        font-size: 18px;
+                        font-family: 'Ubuntu', Arial, sans-serif;
+                    }
+                }
+            }
+        }
+
+        .header__mobile-connection-menu {
+            .header__mobile-connection-block{
+                padding: 20px 0;
+                margin: auto;
+
+                .header__mobile-connection-list{
+                    padding: 10px 0;
+                    margin: 0;
+                }
+            }
+        }
+
+        &.active{
+            opacity: 0;
+            visibility: hidden;
+            display: none;
         }
     }
 }
