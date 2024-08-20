@@ -1,23 +1,22 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import './Navbar.scss'
 
-import logo from "../../shared/images/navbar/logo.png";
+interface NavbarProps {
+  logo: string;
+  navLinks: { path: string; label: string }[];
+  isMenuActive: boolean;
+  toggleMenu: () => void;
+}
 
-export const Navbar: FC = () => {
-  const [isMenuActive, setIsMenuActive] = useState<boolean>(false)
-
-  const toggleMenu = () => {
-    setIsMenuActive(!isMenuActive)
-  }
-
+export const Navbar: FC<NavbarProps> = ({ logo, navLinks, isMenuActive, toggleMenu }) => {
   return (
     <header className='header'>
       <div className='container'>
         <div className='d-flex align-items-center justify-content-between header__block'>
           <div className='header_logo-block'>
-            <Link className='header__logo-link' to={''}>
+            <Link className='header__logo-link' to={'/'}>
               <img className='header_logo-img' src={logo} alt="logo" />
             </Link>
           </div>
@@ -25,18 +24,11 @@ export const Navbar: FC = () => {
           <div className='d-none align-items-center justify-content-center header__nav-block d-lg-flex'>
             <nav className='header__nav'>
               <ul className='d-flex header__nav-list'>
-                <li className='header__nav-item'>
-                  <Link className='header__nav-link' to={'/consultations'}>Консультации</Link>
-                </li>
-                <li className='header__nav-item'>
-                  <Link className='header__nav-link' to={'/about'}>Обо мне</Link>
-                </li>
-                <li className='header__nav-item'>
-                  <Link className='header__nav-link' to={'/podcasts'}>Аудиоподкасты</Link>
-                </li>
-                <li className='header__nav-item'>
-                  <Link className='header__nav-link' to={'/media'}>СМИ</Link>
-                </li>
+                {navLinks.map((link, index) => (
+                    <li key={index} className='header__nav-item'>
+                      <Link className='header__nav-link' to={link.path}>{link.label}</Link>
+                    </li>
+                  ))}
               </ul>
             </nav>
           </div>
@@ -67,18 +59,11 @@ export const Navbar: FC = () => {
         <div className={`text-center header__mobile-block d-lg-none ${!isMenuActive ? 'active' : ''}`}>
           <nav className='header__mobile-nav text-center'>
             <ul className='d-flex header__mobile-nav-list d-flex flex-column p-0 m-0'>
-              <li className='header__mobile-nav-item'>
-                <Link className='header__mobile-nav-link' to={'/consultations'}>Консультации</Link>
-              </li>
-              <li className='header__mobile-nav-item'>
-                <Link className='header__mobile-nav-link' to={'/about'}>Обо мне</Link>
-              </li>
-              <li className='header__mobile-nav-item'>
-                <Link className='header__mobile-nav-link' to={'/podcasts'}>Аудиоподкасты</Link>
-              </li>
-              <li className='header__mobile-nav-item'>
-                <Link className='header__mobile-nav-link' to={'/media'}>СМИ</Link>
-              </li>
+              {navLinks.map((link, index) => (
+                <li key={index} className='header__mobile-nav-item'>
+                  <Link className='header__mobile-nav-link' to={link.path}>{link.label}</Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
