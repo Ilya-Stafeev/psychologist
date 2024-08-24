@@ -1,0 +1,33 @@
+.education {
+    .education__title {
+        font-size: 20px;
+        line-height: 1.17;
+        font-weight: 700;
+        color: #292929;
+        font-family: 'Ubuntu';
+        margin: 0;
+    }
+
+    .education__block {
+        margin-top: 17px;
+        font-size: 14px;
+        line-height: 1.55;
+        font-family: 'Ubuntu', Arial, sans-serif;        
+        color: #000000;
+
+        .education__institution {
+            .education__institution {
+
+            }
+
+            .education__list {
+                padding-left: 20px;
+                margin-bottom: 10px;
+                
+                .education__item{
+                    list-style: disc;
+                }
+            }
+        }
+    }
+}
