@@ -1,0 +1,56 @@
+.situations {
+    margin-top: 45px;
+
+    .situations__title {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 42px;
+        font-family: 'Ubuntu';
+        font-weight: 700;
+    }
+
+    .situations__block {
+        padding: 30px 0;
+        gap: 40px;
+        display: flex;
+        flex-wrap: wrap;        
+        justify-content: center;       
+
+        .situations__item {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;          
+            background-color: rgb(245, 245, 245);
+            height: 176px;
+            cursor: pointer;
+            max-width: 360px;
+            width: 360px;       
+
+            .situations__title {
+                font-size: 20px;
+                text-align: center;
+                padding: 30px 30px 40px;
+                margin: 0;
+            }
+
+            .situations__btn-block {
+                padding: 0 30px 30px;
+                margin: 0 auto;
+
+                .situations__btn {
+                    color: #fff;
+                    background-color: #ef959d;
+                    font-weight: 400;
+                    height: 45px;
+                    font-size: 14px;
+                    padding: 0 30px;
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    border-radius: 30px;
+                }
+            }
+        }
+    }
+}
