@@ -1,4 +1,5 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useRef } from 'react'
+import { SwiperRef } from 'swiper/react';
 
 import { AnimatePresence } from 'framer-motion';
 import { Modal } from '../../../shared/ui/modal/Modal';
@@ -7,10 +8,13 @@ import { Education } from '../../../shared/ui/modalContent/education'
 import { Banner } from '../../../widgets/banner'
 import { Experience } from '../../../widgets/experience'
 import { Channels } from '../../../widgets/channels'
+import { Situations } from '../../../widgets/situations';
+import { Slider } from '../../../widgets/slider';
 
 import { imagesExperience } from '../../../shared/images/experience'
 import { imagesChannels } from '../../../shared/images/channels';
-import { Situations } from '../../../widgets/situations';
+import { imagesSlider } from '../../../shared/images/slider';
+
 
 interface ExperienceItem {
   icon: string;
@@ -20,6 +24,52 @@ interface ExperienceItem {
 
 export const Home: FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const swiperRef = useRef<SwiperRef>(null);
+
+  const [isPrevDisabled, setIsPrevDisabled] = useState(true);
+  const [isNextDisabled, setIsNextDisabled] = useState(false);
+  const [isAutoplayEnabled, setIsAutoplayEnabled] = useState(true);
+
+  const updateButtonStates = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      setIsPrevDisabled(swiperRef.current.swiper.isBeginning);
+      setIsNextDisabled(swiperRef.current.swiper.isEnd);
+    }
+  };
+
+  useEffect(() => {
+    updateButtonStates();
+  }, []);
+
+  const handleSlideChange = () => {
+    updateButtonStates();
+  };
+
+  const handlePrevClick = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+      updateButtonStates();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+      updateButtonStates();
+    }
+  };
+
+  const toggleAutoplay = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      if (swiperRef.current.swiper.autoplay?.running) {
+        swiperRef.current.swiper.autoplay.stop();
+        setIsAutoplayEnabled(false);
+      } else {
+        swiperRef.current.swiper.autoplay.start();
+        setIsAutoplayEnabled(true);
+      }
+    }
+  };
 
   useEffect(() => {
     if (isModalOpen) {
@@ -66,6 +116,17 @@ export const Home: FC = () => {
       <Experience experienceItems={experienceItems}/>
       <Channels channelImages={imagesChannels}/>
       <Situations />
+      <Slider
+        swiperRef={swiperRef}
+        isPrevDisabled={isPrevDisabled}
+        isNextDisabled={isNextDisabled}
+        isAutoplayEnabled={isAutoplayEnabled}
+        imagesSlider={imagesSlider}
+        handlePrevClick={handlePrevClick}
+        handleNextClick={handleNextClick}
+        toggleAutoplay={toggleAutoplay}
+        handleSlideChange={handleSlideChange}
+      />
 
       <AnimatePresence>
           {isModalOpen && (
